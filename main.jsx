@@ -105,12 +105,16 @@ const styles = `
     width:94%;height:96%;
     border-radius:9999px 0 0 9999px;
     overflow:hidden;pointer-events:all;
+    /* Background photo behind the carousel ring */
+    background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=85');
+    background-size: cover;
+    background-position: center;
   }
-  /* Subtle warm overlay to keep cards readable against the warm hero bg */
+  /* Overlay to keep it dark/cinematic, cards float above */
   .c-mask::before {
     content: '';
     position: absolute; inset: 0; z-index: 0;
-    background: linear-gradient(135deg, rgba(28,20,14,0.35) 0%, rgba(40,28,18,0.25) 100%);
+    background: rgba(8,10,14,0.62);
   }
   .c-ring{position:absolute;inset:0;transform-origin:100% 50%;will-change:transform;z-index:1}
 
@@ -132,8 +136,8 @@ const styles = `
   .lb-inner{position:relative;max-width:860px;width:92vw;animation:cardExpand .35s cubic-bezier(.16,1,.3,1) forwards}
   .lb-close{position:absolute;top:-42px;right:0;background:none;border:none;color:white;font-size:24px;cursor:none;opacity:.6;transition:opacity .2s;font-family:'DM Sans',sans-serif;line-height:1}
   .lb-close:hover{opacity:1}
-  .nav-link{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:400;color:rgba(245,233,212,0.7);letter-spacing:0.04em;text-decoration:none;transition:color .2s;}
-  .nav-link:hover{color:#f5e9d4;}
+  .nav-link{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.65);letter-spacing:0.04em;text-decoration:none;transition:color .2s;}
+  .nav-link:hover{color:white;}
 `;
 
 const PROJECTS = [
@@ -445,10 +449,10 @@ function HalfCircleCarousel({onLightbox,onComplete}){
           })}
         </div>
 
-        {/* Left edge blend into warm hero bg */}
-        <div style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:2,background:"linear-gradient(to right,rgba(28,20,14,0.7) 0%,transparent 22%)"}}/>
+        {/* Left edge blend into hero bg */}
+        <div style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:2,background:"linear-gradient(to right,#0a0f14 0%,transparent 22%)"}}/>
         {/* Top/bottom blend */}
-        <div style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:2,background:"linear-gradient(to bottom,rgba(28,20,14,0.5) 0%,transparent 12%,transparent 88%,rgba(28,20,14,0.5) 100%)"}}/>
+        <div style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:2,background:"linear-gradient(to bottom,#0a0f14 0%,transparent 12%,transparent 88%,#0a0f14 100%)"}}/>
 
         {/* Progress indicator */}
         {!done&&(
@@ -468,14 +472,14 @@ function HalfCircleCarousel({onLightbox,onComplete}){
 /* ── Next Section ── */
 function NextSection(){
   return(
-    <section style={{minHeight:"100svh",backgroundColor:"#1a120a",display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
-      <div style={{position:"absolute",top:"20%",left:"50%",transform:"translateX(-50%)",width:"600px",height:"600px",borderRadius:"50%",background:"radial-gradient(circle,rgba(200,169,110,.12) 0%,transparent 70%)",filter:"blur(60px)",pointerEvents:"none"}}/>
+    <section style={{minHeight:"100svh",backgroundColor:"#0a0f14",display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
+      <div style={{position:"absolute",top:"20%",left:"50%",transform:"translateX(-50%)",width:"600px",height:"600px",borderRadius:"50%",background:"radial-gradient(circle,rgba(100,149,237,.07) 0%,transparent 70%)",filter:"blur(60px)",pointerEvents:"none"}}/>
       <div style={{textAlign:"center",position:"relative",zIndex:1,padding:"0 24px"}}>
-        <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"11px",fontWeight:500,color:"rgba(255,245,225,.4)",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:"20px"}}>Der Prozess</div>
-        <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(30px,5vw,56px)",fontWeight:400,color:"#f5e9d4",lineHeight:1.2,letterSpacing:"-0.02em",margin:"0 0 20px"}}>
+        <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"11px",fontWeight:500,color:"rgba(255,255,255,.3)",letterSpacing:"0.15em",textTransform:"uppercase",marginBottom:"20px"}}>Der Prozess</div>
+        <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(30px,5vw,56px)",fontWeight:400,color:"white",lineHeight:1.2,letterSpacing:"-0.02em",margin:"0 0 20px"}}>
           Räume, die erzählen,<br/><em style={{fontStyle:"italic",fontWeight:300}}>wer Sie sind.</em>
         </h2>
-        <p style={{fontFamily:"'DM Sans',sans-serif",fontSize:"16px",fontWeight:300,color:"rgba(255,245,225,.5)",maxWidth:"400px",lineHeight:1.75,margin:"0 auto"}}>
+        <p style={{fontFamily:"'DM Sans',sans-serif",fontSize:"16px",fontWeight:300,color:"rgba(255,255,255,.4)",maxWidth:"400px",lineHeight:1.75,margin:"0 auto"}}>
           Jedes Projekt beginnt mit dem Zuhören. Innenarchitektur, die Ihre Vision sichtbar macht.
         </p>
       </div>
@@ -515,39 +519,32 @@ export default function MerakitectsHero(){
 
       <div style={{overflowY:carouselDone?"auto":"hidden",height:carouselDone?"auto":"100svh"}}>
 
-        <section className="relative w-full overflow-hidden flex flex-col" style={{minHeight:"100svh",backgroundColor:"#1a120a"}}>
+        <section className="relative w-full overflow-hidden flex flex-col" style={{minHeight:"100svh",backgroundColor:"#0a0f14"}}>
 
-          {/* Background Image – warm interior atmosphere */}
+          {/* Background Video */}
           <div className="anim-fade-in absolute inset-0 z-0" style={{animationDelay:"0s",animationDuration:"1.2s"}}>
-            <img
-              src="https://images.unsplash.com/photo-1618219944342-824e40a13285?w=2400&q=90"
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{filter:"brightness(0.62) saturate(1.05)"}}
-            />
-            {/* Warm tint overlay for cinematic cohesion */}
-            <div className="absolute inset-0" style={{
-              background:"linear-gradient(105deg, rgba(20,12,6,0.78) 0%, rgba(28,18,10,0.45) 45%, rgba(40,26,14,0.25) 100%)"
-            }}/>
+            <video className="hero-video absolute inset-0 w-full h-full object-cover"
+              src="https://cdn.sceneai.art/Hero Section Video/736fd4a0-70ac-4f44-9633-55769ead6aca.mp4"
+              autoPlay loop muted playsInline/>
           </div>
 
-          {/* Subtle warm grain dots (replaces cold stars) */}
+          {/* Stars */}
           {STARS.map((s,i)=>(
             <span key={i} className="star z-10 pointer-events-none"
-              style={{top:s.top,left:s.left,width:s.size,height:s.size,background:"rgba(255,225,180,0.7)","--dur":s.dur,"--delay":s.delay}}/>
+              style={{top:s.top,left:s.left,width:s.size,height:s.size,"--dur":s.dur,"--delay":s.delay}}/>
           ))}
 
-          {/* Warm Ambient Glows */}
+          {/* Ambient Glows */}
           <div className="absolute top-10 left-1/4 w-96 h-96 rounded-full pointer-events-none z-0"
-            style={{background:"radial-gradient(circle,rgba(212,176,120,.10) 0%,transparent 70%)",filter:"blur(40px)"}}/>
+            style={{background:"radial-gradient(circle,rgba(100,149,237,.06) 0%,transparent 70%)",filter:"blur(40px)"}}/>
           <div className="absolute top-0 right-1/3 w-64 h-64 rounded-full pointer-events-none z-0"
-            style={{background:"radial-gradient(circle,rgba(255,210,150,.06) 0%,transparent 70%)",filter:"blur(60px)"}}/>
+            style={{background:"radial-gradient(circle,rgba(180,200,255,.04) 0%,transparent 70%)",filter:"blur(60px)"}}/>
 
           {/* Bottom-right vignette */}
           <div className="absolute bottom-0 right-0 pointer-events-none z-10" style={{width:"60%",height:"60%"}}>
-            <div className="absolute bottom-0 right-0 w-full h-full rounded-full" style={{background:"#1a120a",filter:"blur(120px)",transform:"translate(30%,30%)"}}/>
-            <div className="absolute bottom-0 right-0 w-3/4 h-3/4 rounded-full" style={{background:"#1a120a",filter:"blur(80px)",transform:"translate(20%,20%)"}}/>
-            <div className="absolute bottom-0 right-0 w-1/2 h-1/2 rounded-full" style={{background:"#1a120a",filter:"blur(60px)",transform:"translate(10%,10%)"}}/>
+            <div className="absolute bottom-0 right-0 w-full h-full rounded-full" style={{background:"#0a0f14",filter:"blur(120px)",transform:"translate(30%,30%)"}}/>
+            <div className="absolute bottom-0 right-0 w-3/4 h-3/4 rounded-full" style={{background:"#0a0f14",filter:"blur(80px)",transform:"translate(20%,20%)"}}/>
+            <div className="absolute bottom-0 right-0 w-1/2 h-1/2 rounded-full" style={{background:"#0a0f14",filter:"blur(60px)",transform:"translate(10%,10%)"}}/>
           </div>
 
           {/* Carousel z-30 */}
@@ -563,7 +560,7 @@ export default function MerakitectsHero(){
               <div className="max-w-7xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
                 <a href="https://www.merakitects.studio" style={{textDecoration:"none",display:"flex",alignItems:"center"}}>
                   <img src={LOGO_MS} alt="Merakitects Studio"
-                    style={{height:"42px",width:"auto",objectFit:"contain",filter:"brightness(0) invert(1) sepia(0.08) saturate(1.1)"}}/>
+                    style={{height:"42px",width:"auto",objectFit:"contain",filter:"brightness(0) invert(1)"}}/>
                 </a>
 
                 <div className="hidden md:flex items-center gap-8">
@@ -573,9 +570,9 @@ export default function MerakitectsHero(){
                 </div>
 
                 <a href="https://www.merakitects.studio/kontakt" className="hidden md:inline-flex items-center px-5 py-2 rounded-full"
-                  style={{fontFamily:"'DM Sans',sans-serif",fontSize:"13px",fontWeight:500,color:"#f5e9d4",border:"1px solid rgba(245,233,212,.3)",letterSpacing:"0.03em",textDecoration:"none",transition:"border-color .2s,background .2s",background:"transparent"}}
-                  onMouseEnter={e=>{e.currentTarget.style.background="rgba(245,233,212,.08)";e.currentTarget.style.borderColor="rgba(245,233,212,.55)";}}
-                  onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.borderColor="rgba(245,233,212,.3)";}}
+                  style={{fontFamily:"'DM Sans',sans-serif",fontSize:"13px",fontWeight:500,color:"white",border:"1px solid rgba(255,255,255,.25)",letterSpacing:"0.03em",textDecoration:"none",transition:"border-color .2s,background .2s",background:"transparent"}}
+                  onMouseEnter={e=>{e.currentTarget.style.background="rgba(255,255,255,.08)";e.currentTarget.style.borderColor="rgba(255,255,255,.5)";}}
+                  onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.borderColor="rgba(255,255,255,.25)";}}
                 >Kontakt</a>
 
                 <button className="md:hidden flex flex-col gap-[5px] p-2" onClick={()=>setMenuOpen(true)}>
@@ -602,62 +599,43 @@ export default function MerakitectsHero(){
             {/* Hero Left Content */}
             <div className="flex-1 flex flex-col justify-center px-6 md:px-10 pb-10 pt-4" style={{maxWidth:"min(620px,52%)"}}>
 
-              <div className="anim-fade-up mb-3 flex items-center gap-3" style={{animationDelay:"0.5s",fontFamily:"'DM Sans',sans-serif",fontSize:"11px",fontWeight:400,color:"rgba(245,233,212,.55)",letterSpacing:"0.18em",textTransform:"uppercase"}}>
-                <span>Innenarchitektur</span>
-                <span style={{color:"rgba(245,233,212,.3)",letterSpacing:"0"}}>::</span>
-                <span>Düsseldorf</span>
+              <div className="anim-fade-up mb-3" style={{animationDelay:"0.5s",fontFamily:"'DM Sans',sans-serif",fontSize:"11px",fontWeight:400,color:"rgba(255,255,255,.4)",letterSpacing:"0.18em",textTransform:"uppercase"}}>
+                Innenarchitektur · Düsseldorf
               </div>
 
-              <h1 className="mb-5" style={{fontSize:"clamp(34px,4vw,56px)",lineHeight:1.1,letterSpacing:"-0.03em",color:"#f5e9d4",fontFamily:"'DM Sans',sans-serif",fontWeight:600}}>
+              <h1 className="mb-5" style={{fontSize:"clamp(30px,3.6vw,48px)",lineHeight:1.15,letterSpacing:"-0.03em",color:"white",fontFamily:"'DM Sans',sans-serif",fontWeight:600}}>
                 <span className="block flex flex-wrap gap-x-3">
                   {line1.map(({word,delay,serif})=>(
-                    <span key={word} className="anim-fade-up inline-block" style={{animationDelay:delay,fontFamily:serif?"'Playfair Display',serif":undefined,fontWeight:serif?300:600,fontStyle:serif?"italic":"normal",color:serif?"#f5e9d4":"#f5e9d4"}}>{word}</span>
+                    <span key={word} className="anim-fade-up inline-block" style={{animationDelay:delay,fontFamily:serif?"'Playfair Display',serif":undefined,fontWeight:serif?300:600,fontStyle:serif?"italic":"normal"}}>{word}</span>
                   ))}
                 </span>
                 <span className="anim-fade-up block" style={{animationDelay:"1.25s"}}>erzählt.</span>
               </h1>
 
-              <p className="anim-fade-up mb-10" style={{animationDelay:"1.5s",fontFamily:"'DM Sans',sans-serif",fontSize:"clamp(13px,1.3vw,16px)",fontWeight:300,color:"rgba(245,233,212,.6)",lineHeight:1.7,maxWidth:"380px"}}>
-                Wir gestalten keine Räume von der Stange. Wir entwerfen Orte, an denen Geschichten gelebt werden – von der ersten Idee bis zur vollendeten Umsetzung.
+              <p className="anim-fade-up mb-10" style={{animationDelay:"1.5s",fontFamily:"'DM Sans',sans-serif",fontSize:"clamp(13px,1.3vw,16px)",fontWeight:300,color:"rgba(255,255,255,.5)",lineHeight:1.7,maxWidth:"380px"}}>
+                Individuelle Innenarchitektur, die Persönlichkeit widerspiegelt – von der ersten Idee bis zur vollendeten Umsetzung.
               </p>
 
-              <div className="anim-fade-up flex items-center gap-5" style={{animationDelay:"1.75s"}}>
+              <div className="anim-fade-up" style={{animationDelay:"1.75s"}}>
                 <button
-                  style={{fontFamily:"'DM Sans',sans-serif",fontWeight:600,fontSize:"14px",color:"#1a120a",background:"#f5e9d4",border:"none",padding:"13px 32px",borderRadius:"999px",cursor:"none",letterSpacing:"0.02em",transition:"transform .2s,box-shadow .2s"}}
-                  onMouseEnter={e=>{e.currentTarget.style.transform="scale(1.04)";e.currentTarget.style.boxShadow="0 8px 30px rgba(212,176,120,.3)";}}
+                  style={{fontFamily:"'DM Sans',sans-serif",fontWeight:600,fontSize:"14px",color:"#0a0f14",background:"white",border:"none",padding:"13px 32px",borderRadius:"999px",cursor:"none",letterSpacing:"0.02em",transition:"transform .2s,box-shadow .2s"}}
+                  onMouseEnter={e=>{e.currentTarget.style.transform="scale(1.04)";e.currentTarget.style.boxShadow="0 8px 30px rgba(255,255,255,.2)";}}
                   onMouseLeave={e=>{e.currentTarget.style.transform="scale(1)";e.currentTarget.style.boxShadow="none";}}
                 >Projekte entdecken</button>
-                <a href="https://www.merakitects.studio/news" style={{fontFamily:"'DM Sans',sans-serif",fontSize:"13px",fontWeight:400,color:"rgba(245,233,212,.65)",letterSpacing:"0.04em",textDecoration:"none",borderBottom:"1px solid rgba(245,233,212,.25)",paddingBottom:"2px"}}>Read more →</a>
               </div>
             </div>
 
             {/* Client Logos */}
             <div className="anim-fade-up px-6 md:px-10 pb-10" style={{animationDelay:"2.2s",maxWidth:"min(620px,52%)"}}>
-              <p className="mb-5" style={{fontFamily:"'DM Sans',sans-serif",fontSize:"12px",fontWeight:400,color:"rgba(245,233,212,.4)",letterSpacing:"0.06em"}}>
-                Vertrauen von <span style={{color:"#f5e9d4",fontWeight:600}}>ausgewählten Kunden</span> aus Gastronomie, Retail & Gewerbe
+              <p className="mb-5" style={{fontFamily:"'DM Sans',sans-serif",fontSize:"12px",fontWeight:400,color:"rgba(255,255,255,.35)",letterSpacing:"0.06em"}}>
+                Vertrauen von <span style={{color:"white",fontWeight:600}}>ausgewählten Kunden</span> aus Gastronomie, Retail & Gewerbe
               </p>
-              <div className="flex flex-wrap items-center gap-7 md:gap-10" style={{filter:"brightness(0.92) sepia(0.15)"}}>
+              <div className="flex flex-wrap items-center gap-7 md:gap-10">
                 <XafeLogo/>
                 <BirdieLogo/>
                 <BeefundcoLogo/>
                 <DCLogo/>
               </div>
-            </div>
-
-            {/* Bottom-left section marker (Graft-style) */}
-            <div className="anim-fade-up hidden md:block absolute bottom-6 left-10 pointer-events-none" style={{animationDelay:"2.5s",zIndex:25}}>
-              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"11px",fontWeight:500,color:"rgba(245,233,212,.55)",letterSpacing:"0.18em",lineHeight:1.6}}>
-                <div style={{color:"#f5e9d4",fontWeight:600,marginBottom:"4px"}}>01</div>
-                <div style={{textTransform:"uppercase",fontSize:"9.5px"}}>Featured Projects</div>
-              </div>
-            </div>
-
-            {/* Bottom-right "Made by" badge (Graft-style) */}
-            <div className="anim-fade-up hidden md:flex absolute bottom-6 right-10 items-center gap-2 pointer-events-none" style={{animationDelay:"2.5s",zIndex:25}}>
-              <span style={{display:"inline-block",width:"7px",height:"7px",borderRadius:"50%",background:"#d4b078",boxShadow:"0 0 12px rgba(212,176,120,0.7)"}}/>
-              <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"10px",fontWeight:500,color:"rgba(245,233,212,.6)",letterSpacing:"0.12em",textTransform:"uppercase"}}>
-                Made by Merakitects
-              </span>
             </div>
 
           </div>
@@ -669,4 +647,3 @@ export default function MerakitectsHero(){
     </>
   );
 }
-        
