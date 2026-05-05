@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './MerakitectsHero-2.jsx' // Falls die Datei so heißt
+import App from './main.jsx' // Falls die Datei so heißt
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
